@@ -2,18 +2,17 @@
 .global _start
 
 _start:
-    movb $25, %al
-    mov $0, %ah
-    movb $10, %bl
-    
-    divb %bl
-    movb %ah, %cl
-    mulb %al
-    movb %al, %dl
-    movb %cl, %al
-    mulb %al
-    addb %al, %dl
+    movl $45, %esi
 
-    movl $1, %eax
-    xorl %ebx, %ebx
+    movl %esi, %eax         
+    xorl %edx, %edx         
+    movl $10, %ecx          
+    divl %ecx               
+
+    imull %eax, %eax   
+    imull %edx, %edx
+    addl %edx, %eax
+
+    movl $1, %eax 
+    xorl %ebx, %ebx 
     int $0x80
